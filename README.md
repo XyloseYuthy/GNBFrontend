@@ -1,2 +1,2 @@
-# GNUProject
-GNU project member share space
+# GNBProject
+GNB project member share space
