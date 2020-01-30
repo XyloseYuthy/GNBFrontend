@@ -23,8 +23,11 @@ private:
 private:
     void showList();
 
-public slots:
+private slots:
     void onListItemClicked(QListWidgetItem* item);
+    void on_btn_create_clicked();
+    void on_btn_clean_clicked();
+    void on_btn_export_clicked();
 };
 
 #endif // MAINWINDOW_H

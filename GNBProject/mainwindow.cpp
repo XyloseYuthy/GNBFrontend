@@ -3,6 +3,9 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QProgressBar>
+#include <QInputDialog>
+#include <QMessageBox>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -105,9 +108,50 @@ QListView::item:selected {
 
 void MainWindow::onListItemClicked(QListWidgetItem* item)
 {
-    item->setBackground(QColor("white"));
-
     qDebug("onListItemClicked");
     if (ui->listWidget->item(0) == item) {
+    }
+}
+
+void MainWindow::on_btn_create_clicked()
+{
+    bool res;
+    QString text = QInputDialog::getText(this, tr("创建节点数"), tr("请输入节点数"), QLineEdit::Normal, nullptr, &res);
+    if (!res) return;
+
+    if (text.isEmpty()) {
+        QMessageBox::warning(nullptr, QStringLiteral("提示"), QStringLiteral("请输入节点数"), QMessageBox::Yes, QMessageBox::Yes);
+        return;
+    }
+
+    QRegExp rx("^[0-9]*[1-9][0-9]*$");
+    int pos = rx.indexIn(text);
+    if(pos < 0){
+        QMessageBox::warning(nullptr, QStringLiteral("提示"), QStringLiteral("请输入数字"), QMessageBox::Yes, QMessageBox::Yes);
+        return;
+    }
+
+    qDebug("打开新建节点脚本");
+}
+
+void MainWindow::on_btn_clean_clicked()
+{
+    qDebug("TODO：清空列表");
+}
+
+void MainWindow::on_btn_export_clicked()
+{
+    QFileDialog dlg(this);
+    //dlg.setDirectory("G:/D.T.Qt/Notes");//设置默认目录
+    dlg.setAcceptMode(QFileDialog::AcceptOpen);
+    // 限制只打开目录
+    dlg.setFileMode(QFileDialog::Directory);
+
+    if(dlg.exec() != QFileDialog::Accepted ||
+            dlg.selectedFiles().length() > 1)
+        return;
+
+    for (auto fileName: dlg.selectedFiles()) {
+        qDebug("%s%s", "导出目录至：", fileName.toStdString().c_str());
     }
 }

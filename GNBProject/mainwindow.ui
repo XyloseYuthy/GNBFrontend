@@ -39,7 +39,7 @@
  }</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btn_create">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -52,7 +52,7 @@
      <string>新建</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_clean">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -65,7 +65,7 @@
      <string>清空</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btn_export">
     <property name="geometry">
      <rect>
       <x>220</x>
