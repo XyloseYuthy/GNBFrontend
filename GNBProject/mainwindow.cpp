@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->showList();
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)),
       this, SLOT(onListItemClicked(QListWidgetItem*)));
+    connect(ui->listWidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+      this, SLOT(onListItemDblClicked(QListWidgetItem*)));
 }
 
 MainWindow::~MainWindow()
@@ -111,6 +113,11 @@ void MainWindow::onListItemClicked(QListWidgetItem* item)
     qDebug("onListItemClicked");
     if (ui->listWidget->item(0) == item) {
     }
+}
+
+void MainWindow::onListItemDblClicked(QListWidgetItem* item)
+{
+    qDebug("onListItemClicked");
 }
 
 void MainWindow::on_btn_create_clicked()

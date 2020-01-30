@@ -25,6 +25,7 @@ private:
 
 private slots:
     void onListItemClicked(QListWidgetItem* item);
+    void onListItemDblClicked(QListWidgetItem* item);
     void on_btn_create_clicked();
     void on_btn_clean_clicked();
     void on_btn_export_clicked();
