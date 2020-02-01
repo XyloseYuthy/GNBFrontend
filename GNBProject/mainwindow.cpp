@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
+#include <QProcessEnvironment>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QProgressBar>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QFileDialog>
+
+extern  char *app_dirname;
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,20 +33,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::showList()
 {
-    /*
-QListView::item:selected {
-     border: 1px solid #6a6ea9;
- }
- QListView::item:selected:!active {
-     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                 stop: 0 #FFFFFF, stop: 1 #FFFFFF);
-                                 //stop: 0 #ABAFE5, stop: 1 #8588B2);
- }
- QListView::item:selected:active {
-     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FFFFFF, stop: 1 #FFFFFF);
-     //                            stop: 0 #6a6ea9, stop: 1 #888dd9);
- }
-*/
+
     qDebug("showList");
     for (int i = 0; i<10; i++) {
 
@@ -140,16 +132,40 @@ void MainWindow::on_btn_create_clicked()
         return;
     }
 
-    if (text.toInt() > 10) {
-        QMessageBox::warning(nullptr, QStringLiteral("提示"), QStringLiteral("最多生成10个节点"), QMessageBox::Yes, QMessageBox::Yes);
+    if (text.toInt() > 3) {
+        QMessageBox::warning(nullptr, QStringLiteral("提示"), QStringLiteral("最多生成3个节点"), QMessageBox::Yes, QMessageBox::Yes);
         return;
     }
 
-    qDebug("打开新建节点脚本");
+
+    QProcess process(0);
+
+    QStringList args;
+
+    QString gnb_command;
+
+    QString gnb_command_arg_string1;
+
+    gnb_command_arg_string1.sprintf("%d",pos);
+
+    gnb_command.sprintf("%s/gnb_setup.cmd",  app_dirname);
+
+    args.append( gnb_command_arg_string1.toStdString().c_str() );
+
+    qDebug("start execute %s %s", gnb_command.toStdString().c_str(),gnb_command_arg_string1.toStdString().c_str());
+
+    process.execute(gnb_command,args);
+
+    process.waitForFinished();
+
+    qDebug("end execute %s %s", gnb_command.toStdString().c_str(),gnb_command_arg_string1.toStdString().c_str());
+
+
 }
 
 void MainWindow::on_btn_clean_clicked()
 {
+    ui->listWidget->clear();
     qDebug("TODO：清空列表");
 }
 
