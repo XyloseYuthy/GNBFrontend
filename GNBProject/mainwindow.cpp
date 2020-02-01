@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // 固定窗口大小
+    this->setFixedSize(561, 407);
     this->showList();
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)),
       this, SLOT(onListItemClicked(QListWidgetItem*)));
@@ -135,6 +137,11 @@ void MainWindow::on_btn_create_clicked()
     int pos = rx.indexIn(text);
     if(pos < 0){
         QMessageBox::warning(nullptr, QStringLiteral("提示"), QStringLiteral("请输入数字"), QMessageBox::Yes, QMessageBox::Yes);
+        return;
+    }
+
+    if (text.toInt() > 10) {
+        QMessageBox::warning(nullptr, QStringLiteral("提示"), QStringLiteral("最多生成10个节点"), QMessageBox::Yes, QMessageBox::Yes);
         return;
     }
 

@@ -22,6 +22,10 @@ private slots:
     void on_btn_start_clicked();
     void on_btn_install_driver_clicked();
 
+    void on_btn_uninstall_driver_clicked();
+
+    void on_btn_stop_clicked();
+
 private:
     Ui::NodeWindow *ui;
 };

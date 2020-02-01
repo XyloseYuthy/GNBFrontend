@@ -7,6 +7,9 @@ NodeWindow::NodeWindow(QWidget *parent) :
     ui(new Ui::NodeWindow)
 {
     ui->setupUi(this);
+    // 固定窗口大小
+    this->setFixedSize(641, 600);
+
     this->initWindow();
 }
 
@@ -29,4 +32,14 @@ void NodeWindow::on_btn_start_clicked()
 void NodeWindow::on_btn_install_driver_clicked()
 {
     qDebug("on_btn_install_driver_clicked");
+}
+
+void NodeWindow::on_btn_uninstall_driver_clicked()
+{
+    qDebug("on_btn_uninstall_driver_clicked");
+}
+
+void NodeWindow::on_btn_stop_clicked()
+{
+    qDebug("on_btn_stop_clicked");
 }
