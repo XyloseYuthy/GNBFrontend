@@ -160,12 +160,14 @@ void op_gnb_node(const char *gnb_path, const char *node_id, int op){
     char cmd_buf[1024];
 
     if (0==op){
-        sprintf(cmd_buf,"%s\\sh\\gnb_windows_start.cmd %s", gnb_path,node_id);
+        sprintf(cmd_buf,"start %s\\bin\\Window10_x86_64\\gnb.exe -i WindowsTun -c %s\\conf\\%s", gnb_path, gnb_path, node_id);
+        system(cmd_buf);
+        sprintf(cmd_buf,"start %s\\bin\\Window10_x86_64\\gnb_es.exe -s -b %s\\conf\\%s\\gnb.map --dump-address --upnp", gnb_path, gnb_path, node_id);
+        system(cmd_buf);
     }else{
         sprintf(cmd_buf,"%s\\sh\\gnb_windows_stop.cmd %s",  gnb_path);
+        system(cmd_buf);
     }
-
-    system(cmd_buf);
 
 }
 
@@ -189,11 +191,11 @@ void MainWindow::on_startButton_clicked()
 {
 
     if ( 0 != isStart ){
-        QMessageBox::warning(nullptr, "提示", "服务已经启动", QMessageBox::Yes);
+        QMessageBox::warning(nullptr, "提示", "GNB服务可能已经启动，请确认", QMessageBox::Yes);
         return;
     }
     if ( nullptr == cur_node_id ){
-        QMessageBox::warning(nullptr, "提示", "请选择一个节点", QMessageBox::Yes);
+        QMessageBox::warning(nullptr, "提示", "请选择一个GNB节点", QMessageBox::Yes);
         return;
     }
 
