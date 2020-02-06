@@ -41,7 +41,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>89</width>
+      <width>101</width>
       <height>25</height>
      </rect>
     </property>
@@ -65,9 +65,9 @@
    <widget class="QPushButton" name="installdrvButton">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>250</x>
       <y>10</y>
-      <width>101</width>
+      <width>121</width>
       <height>25</height>
      </rect>
     </property>
@@ -80,7 +80,7 @@
      <rect>
       <x>390</x>
       <y>10</y>
-      <width>121</width>
+      <width>131</width>
       <height>25</height>
      </rect>
     </property>

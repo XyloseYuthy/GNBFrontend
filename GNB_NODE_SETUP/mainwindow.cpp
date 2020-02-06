@@ -206,7 +206,7 @@ void MainWindow::on_cleanButton_clicked()
     }
 
     char cmd_buf[1024];
-    sprintf(cmd_buf,"rd /S /Q %s\\conf %s %d", app_dirname);
+    sprintf(cmd_buf,"rd /S /Q %s\\conf", app_dirname);
     qDebug("clean [%s]", cmd_buf);
 
     system(cmd_buf);
