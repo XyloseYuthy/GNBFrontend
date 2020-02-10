@@ -19,7 +19,8 @@ GNB的配置文件十分简单非常容易在各平台部署运行起来，但�
 
 ### Step1
 
-从 Github 上下载的 release版解压后的目录文件，点击文件 GNB_NODE_SETUP.exe 运行
+
+从 Github 上下载的[release](https://github.com/XyloseYuthy/GNBFrontend/releases)文件解压后的目录文件，点击文件 GNB_NODE_SETUP.exe 运行
 
 ![gnb_ui_0.png](images/gnb_ui_0.png)
 
@@ -77,17 +78,19 @@ GNB的配置文件十分简单非常容易在各平台部署运行起来，但�
 
 
 ### Step2
+
 如果这个Windows系统之前从没运行过GNB，这时可能需要先安装一个来自OpenVPN开发的虚拟网卡驱动，点击“install driver”  安装。
 
 ![gnb_ui_9.png](images/gnb_ui_9.png)
 
 安装驱动前会让用户确认是否要安装。
-![gnb_ui_10.png](images/gnb_ui_10.png)
 
+![gnb_ui_10.png](images/gnb_ui_10.png)
 
 ![gnb_ui_11.png](images/gnb_ui_11.png)
 
 安装好驱动后会在控制面板的网络连接中看到多出一个网卡，这是虚拟网卡，状态是断开的，不需要对其进行任何设置。
+
 ![gnb_ui_12.png](images/gnb_ui_12.png)
 
 要注意的是，如果系统中还安装有其他VPN软件，并且也是使用OpenVP提供的虚拟网卡就需要注意不要发生冲突，如果运行发生异常，可以先停止其他VPN软件再运行GNB，又或者先停止GNB再运行其他VPN软件。
@@ -95,28 +98,32 @@ GNB的配置文件十分简单非常容易在各平台部署运行起来，但�
 事实上，只要规划好，包括ip和路由这些技术细节，GNB和其他VPN可以同时启动。
 
 ### Step3
-在安装好虚拟网卡后就可以点击 “start gnb”
-![gnb_ui_13.png](images/gnb_ui_13.png)
 
+在安装好虚拟网卡后就可以点击 “start gnb”
+
+![gnb_ui_13.png](images/gnb_ui_13.png)
 
 由于 gnb 需要管理员权限访问虚拟网卡，因此这里弹出“用户账户控制” 窗口询问用户是否同意，如果确定要启动GNB就请点击“是”。
 ![gnb_ui_14.png](images/gnb_ui_14.png)
-
 
 还有允许防火墙权限，如果确定要启动GNB就请点击“允许访问”；要注意的是如果此时点击“”取消”，系统可能就会记住用户这个选择，下次启动GNB也不会出现这个提示，这时需要到“”控制面板” “Windows Defender 防火墙” 去解除这个限制，这个过程比较麻烦。
 
 ![gnb_ui_15.png](images/gnb_ui_15.png)
 
 GNB节点运行过程中会打开两个控制台窗口，可以从中看到一些GNB运行的日志。
+
 ![gnb_ui_16.png](images/gnb_ui_16.png)
+
 如果要停止GNB最要不要直接关闭这两个窗口，可以通过点击 “stop gnb” 停止 GNB。
 
 ### Step4
 检查服务
 这时在控制面板的网络连接里可以看到这个虚拟网卡的状态是接通，但是提示“未识别的网络”，这没关系，属于正常情况。
+
 ![gnb_ui_17.png](images/gnb_ui_17.png)
 
 通过 ipconfig 命令可以看到 虚拟网卡已经成功设置了虚拟ip 10.1.0.2
+
 ![gnb_ui_18.png](images/gnb_ui_18.png)
 
 ### Step5
@@ -125,6 +132,13 @@ GNB节点运行过程中会打开两个控制台窗口，可以从中看到一�
 ### Step6
 测试网络
 在 虚拟ip为 10.1.0.2 的主机上 ping 10.1.0.3 确认对端虚拟的ip是否是通的。
+
 ![gnb_ui_19.png](images/gnb_ui_19.png)
 
-要注意的是，Windows 系统的防火墙可能会关闭icmp，因此两台主机之间ping是被拦截的，这时可以尝试其他网络服务例如网络文件共享去确认两台机器已经连通。
+要注意的是，默认情况下Windows系统的防火墙会关闭icmp，因此两台Windows主机之间ping是被系统防火墙拦截的，这时可以尝试其他网络服务例如“网络文件共享”去确认两台机器已经连通。
+
+此时，两台主机即使是处于异地的两个局域网通过nat方式上网，即使出口没有公网ip4，也不需要公网中转服务就可以在一个虚拟局域网里进行tcp/ip通讯了。
+
+GNB极致的nat穿透能力使得在内网环境的GNB节点在大部分网络环境下不需要公网服务器中转数据进行虚拟组网，但两台异地的主机需要位于公网的index节点找到对方这类似于BT的Tracker或DNS，index节点可以有多个，由志愿者提供，具体细节在配置文件address.conf中。
+
+
