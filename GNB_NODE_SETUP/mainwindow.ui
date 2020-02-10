@@ -80,12 +80,12 @@
      <rect>
       <x>10</x>
       <y>370</y>
-      <width>281</width>
+      <width>521</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>官方网站&lt;a href=&quot;https://github.com/gnbdev/gnb&quot;&gt;https://github.com/gnbdev/gnb&lt;/a&gt;</string>
+     <string>官方网站&lt;a href=&quot;https://github.com/gnbdev/gnb&quot;&gt;https://github.com/gnbdev/gnb&lt;/a&gt; 前端&lt;a href=&quot;https://github.com/XyloseYuthy/GNBFrontend&quot;&gt;https://github.com/XyloseYuthy/GNBFrontend&lt;/a&gt;</string>
     </property>
     <property name="openExternalLinks">
      <bool>true</bool>
