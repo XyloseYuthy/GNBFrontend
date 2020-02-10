@@ -8,7 +8,7 @@ char *gnb_real_dirname_dup(char *path){
 
     char *string = strdup(path);
 
-    char *resolved_path = (char *)malloc(1024);
+    char *resolved_path = (char *)malloc(PATH_MAX);
 
     size_t string_len = strlen( (const char *)string );
 
