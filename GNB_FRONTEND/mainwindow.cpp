@@ -160,7 +160,7 @@ void op_gnb_node(const char *gnb_path, const char *node_id, int op){
     char cmd_buf[1024];
 
     if (0==op){
-        sprintf(cmd_buf,"start %s\\bin\\Window10_x86_64\\gnb.exe -i WindowsTun -c %s\\conf\\%s", gnb_path, gnb_path, node_id);
+        sprintf(cmd_buf,"start %s\\bin\\Window10_x86_64\\gnb.exe -i WindowsTun -c %s\\conf\\%s --port-detect-start=500 --port-detect-end=65535", gnb_path, gnb_path, node_id);
         system(cmd_buf);
         sprintf(cmd_buf,"start %s\\bin\\Window10_x86_64\\gnb_es.exe -s -b %s\\conf\\%s\\gnb.map --dump-address --upnp", gnb_path, gnb_path, node_id);
         system(cmd_buf);
