@@ -15,6 +15,8 @@ GNB的配置文件十分简单非常容易在各平台部署运行起来，但�
 
 以下是Windows平台上使用GNBFrontend创建、分发、启动GNB节点的过程。
 
+请注意 GNBFrontend 无法在含有空格的目录下正常工作
+
 ## 创建并导出GNB节点
 
 ### Step1
